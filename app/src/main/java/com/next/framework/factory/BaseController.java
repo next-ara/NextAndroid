@@ -184,7 +184,7 @@ abstract public class BaseController extends BaseObject {
         if (!fieldAnnotationList.isEmpty()) {
             for (Field field : fieldAnnotationList) {
                 GetObj getObj = field.getAnnotation(GetObj.class);
-                String objKey = getObj.objKey();
+                String objKey = getObj.value();
                 if (TextUtils.isEmpty(objKey)) {
                     continue;
                 }
