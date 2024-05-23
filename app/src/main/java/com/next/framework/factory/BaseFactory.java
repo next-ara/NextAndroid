@@ -240,6 +240,7 @@ abstract public class BaseFactory extends BaseObject {
         for (String key : this.viewManageObjMap.keySet()) {
             BaseViewManage viewManage = this.viewManageObjMap.get(key);
             viewManage.setActivity(this.activity);
+            viewManage.init();
             viewManage.initView();
         }
 
