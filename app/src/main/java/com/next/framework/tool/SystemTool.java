@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Process;
 
 import com.next.framework.FrameManager;
 
@@ -101,7 +102,8 @@ public class SystemTool {
     /**
      * 跳转网址
      *
-     * @param url 网址
+     * @param context 上下文
+     * @param url     网址
      */
     public static boolean openUrl(Context context, String url) {
         try {
@@ -115,5 +117,29 @@ public class SystemTool {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    /**
+     * 返回手机桌面
+     *
+     * @param context 上下文
+     */
+    public static void backToHome(Context context) {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 重启应用
+     *
+     * @param context 上下文
+     */
+    public static void restartApp(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        Intent launchIntent = packageManager.getLaunchIntentForPackage(context.getPackageName());
+        context.startActivity(launchIntent);
+        Process.killProcess(android.os.Process.myPid());
     }
 }

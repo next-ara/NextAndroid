@@ -198,6 +198,17 @@ public class ActivityTool {
     }
 
     /**
+     * 关闭所有Activity
+     */
+    public void closeAllActivity() {
+        for (Activity activity : this.activityObjList) {
+            if (!activity.isFinishing()) {
+                activity.finish();
+            }
+        }
+    }
+
+    /**
      * 增加Activity对象
      *
      * @param activity Activity对象
